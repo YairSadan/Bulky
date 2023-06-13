@@ -1,0 +1,32 @@
+﻿@model List<AnimalCommentsVM>
+
+<div class="row pb-3">
+    @foreach (var obj in Model) {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        <img src="@obj.Animal.ImageUrl" class="card-img-top rounded" />
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@obj.Animal.Name</p>
+                                <p class="card-title text-warning text-center"><b>@Html.Raw(obj.Animal.Description)</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center mb-0">
+                                    <span class="">
+                                        Number of Comments: 
+                                        @obj.Comments.Count
+                                    </span>
+                                </p>
+                            </div>
+                            <div>
+                                <a asp-controller="Home" asp-action="Details" asp-route-id="@obj.Animal.Id" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

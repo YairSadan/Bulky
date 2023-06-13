@@ -1,0 +1,7 @@
+﻿@model List<Comment>
+
+<ul>
+    @foreach (var comment in Model) {
+        <li>@Html.Raw(comment.Text)</li>
+    }
+</ul>
