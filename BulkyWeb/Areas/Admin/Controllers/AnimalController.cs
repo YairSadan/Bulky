@@ -40,7 +40,7 @@ namespace BulkyWeb.Areas.Admin.Controllers {
 
         [HttpPost]
         public IActionResult Upsert(AnimalVM animalVM, IFormFile? file) {
-            if (ModelState.IsValid && animalVM.Animal.ImageUrl != null && animalVM.Animal.Description != null) {
+            if (ModelState.IsValid && animalVM.Animal.Description != null) {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null) {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName); 

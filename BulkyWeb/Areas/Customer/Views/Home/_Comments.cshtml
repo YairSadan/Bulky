@@ -1,5 +1,6 @@
 ﻿@model List<Comment>
 
+<partial name="_Notification" />
 <ul>
     @foreach (var comment in Model) {
         <li>@Html.Raw(comment.Text)</li>

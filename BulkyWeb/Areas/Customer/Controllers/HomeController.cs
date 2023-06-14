@@ -50,12 +50,6 @@ namespace BulkyWeb.Areas.Customer.Controllers
             return View(animal);
         }
 
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -76,6 +70,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 };
                 _unitOfWork.Comment.Add(c);
                 _unitOfWork.Save();
+                TempData["success"] = "Comment posetd successfully";
             }
             return Ok();
         }
