@@ -12,7 +12,8 @@
                 <label for="categoryDropdown">Select Category:</label>
                 <select id="categoryDropdown" class="form-control text-center">
                     <option value="">-- Select Category --</option>
-                    @foreach (var category in Model.Categories) {
+                    @foreach (var category in Model.Categories)
+                    {
                         <option value="@category.Id">@category.Name</option>
                     }
                 </select>
@@ -26,13 +27,7 @@
                     <h4 class="card-title">Animals in selected category</h4>
                 </div>
                 <div class="card-body">
-                    <div  class="col-lg-6 col-sm-6">
-                        <div class="row p-2">
-                            <div class="col-12 p-2">
-                                <div id="animalList" class="card border-0 p-3 shadow border-top border-5 rounded">
-                                </div>
-                            </div>
-                        </div>
+                    <div id="animalList" class="card border-0 p-3 row row-cols-1 row-cols-sm-2 flex-row g-3 shadow border-top border-5 rounded">
                     </div>
                 </div>
             </div>
@@ -59,17 +54,18 @@
 
                     if (selectedAnimals.length > 0) {
                         selectedAnimals.forEach(function (animal) {
-                            var listItem = `<div class="mb-4 shadow row border-top pb-4">
-                            <img src="${animal.imageUrl}" class="card-img-top rounded" />
-                                                <div class="card-body pb-0">
-                                            <div class="pl-1">
+                            var listItem = `<div class="mb-4 shadow col border-top pb-4">
+                                    <img src="${animal.imageUrl}" class="card-img-top rounded" />
+                                    <div class="card-body pb-0">
+                                        <div class="pl-1">
                                             <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">${animal.name}</p>
                                             <p class="card-title text-warning text-center"><b>${animal.description}</b></p>
-                                            </div>
-                                                <div>
-                                                <a href="Home/Details/${animal.id}" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
-                                                </div>
-                                                </div>`;
+                                        </div>
+                                        <div>
+                                            <a href="Home/Details/${animal.id}" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
+                                        </div>
+                                    </div>
+                                </div>`;
                             animalList.append(listItem);
                         });
                     } else {
@@ -82,4 +78,4 @@
             });
         });
     </script>
-}
+        }
