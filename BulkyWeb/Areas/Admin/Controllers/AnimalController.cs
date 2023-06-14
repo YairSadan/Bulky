@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.Protocol;
 using Pet.DataAccess.Repository.IRepository;
 using Pet.Models;
 using Pet.Models.ViewModels;
@@ -15,13 +14,10 @@ namespace BulkyWeb.Areas.Admin.Controllers {
             _unitOfWork = db;
             _webHostEnvironment = webHostEnvironment;
         }
-        // GET: AnimalController
         public IActionResult Index() {
             List<Animal> objAnimalList = _unitOfWork.Animal.GetAll(includeProperties:"Category").ToList();
             return View(objAnimalList);
         }
-
-        // GET: AnimalController/Create
 
         public IActionResult Upsert(int? id) {
             AnimalVM animalVM = new() {
@@ -44,7 +40,7 @@ namespace BulkyWeb.Areas.Admin.Controllers {
 
         [HttpPost]
         public IActionResult Upsert(AnimalVM animalVM, IFormFile? file) {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid && animalVM.Animal.ImageUrl != null && animalVM.Animal.Description != null) {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null) {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName); 
