@@ -5,29 +5,25 @@ $(document).ready(function () {
 
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
-        "ajax": { url: '/admin/animal/getall' },
+        "ajax": { url: '/admin/category/getall' },
         "columns": [
-            {
-                "data": "imageUrl",
-                "render": function (data) {
-                    return '<img src="' + data + '" width="150" height="150"/>';
-                },
-                "width": "20%"
-            },
-            { data: 'name', "width": "10%"},
-            { data: 'age', "width": "5%"},
-            { data: 'description', "width": "40%"},
-            { data: 'category.name', "width": "10%" },
+            { data: 'name', "width": "50%" },
             {
                 data: 'id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
-                   <a href="/admin/animal/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                   <a onClick=Delete('/admin/animal/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                   <a href="/admin/category/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                   <a onClick=Delete('/admin/category/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                    </div >`
                 },
-                    "width": "25%"
+                "width": "50%"
             },
+        ],
+        "columnDefs": [
+            {
+                "targets": [1],
+                "className": "text-center"
+            }
         ]
     });
 }
@@ -51,6 +47,6 @@ function Delete(url) {
                     toastr.success(data.message);
                 }
             })
-        }
+        }       
     })
 }
